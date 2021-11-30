@@ -5,7 +5,6 @@ import 'package:tokokita/bloc/logout_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/login_page.dart';
 import 'package:tokokita/ui/produk_detail.dart';
-import 'package:tokokita/widget/search_widget.dart';
 
 class ProdukPage extends StatefulWidget {
   @override
@@ -35,62 +34,51 @@ class _ProdukPageState extends State<ProdukPage> {
           }
         },
         child: Scaffold(
-            appBar: AppBar(
-              title: Text('Daftar Kue'),
+          appBar: AppBar(
+            title: Text('Daftar Kue'),
+          ),
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                ListTile(
+                  title: Text('Logout'),
+                  trailing: Icon(Icons.logout),
+                  onTap: () async {
+                    await LogoutBloc.logout().then((value) {
+                      Navigator.pushReplacement(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => LoginPage()));
+                    });
+                  },
+                )
+              ],
             ),
-            drawer: Drawer(
-              child: ListView(
-                children: [
-                  ListTile(
-                    title: Text('Logout'),
-                    trailing: Icon(Icons.logout),
-                    onTap: () async {
-                      await LogoutBloc.logout().then((value) {
-                        Navigator.pushReplacement(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) => LoginPage()));
-                      });
-                    },
-                  )
-                ],
-              ),
-            ),
-            body: Column(children: <Widget>[
-              buildSearch(),
-              Expanded(
-                child: ListView(
-                  children: [
-                    ItemProduk(
-                        produk: Produk(
-                            namaProduk: 'Black Forest',
-                            hargaProduk: 60000,
-                            deskripsiProduk:
-                                'Kue lezat dengan krim yang lembut',
-                            image: 'lib/images/BLACKFOREST.jpg')),
-                    ItemProduk(
-                        produk: Produk(
-                            namaProduk: 'Lava Cake',
-                            hargaProduk: 70000,
-                            deskripsiProduk:
-                                'Kue coklat dengan isi coklat melimpah',
-                            image: 'lib/images/LAVACAKE.jpeg')),
-                    ItemProduk(
-                        produk: Produk(
-                            namaProduk: 'Brownies',
-                            hargaProduk: 42000,
-                            deskripsiProduk:
-                                'Kue coklat dengan taburan choco cips',
-                            image: 'lib/images/BROWNIES.jpg')),
-                  ],
-                ),
-              )
-            ])));
+          ),
+          body: ListView(
+            children: [
+              ItemProduk(
+                  produk: Produk(
+                      namaProduk: 'Black Forest',
+                      hargaProduk: 60000,
+                      deskripsiProduk: 'Kue lezat dengan krim yang lembut',
+                      image: 'lib/images/BLACKFOREST.jpg')),
+              ItemProduk(
+                  produk: Produk(
+                      namaProduk: 'Lava Cake',
+                      hargaProduk: 70000,
+                      deskripsiProduk: 'Kue coklat dengan isi coklat melimpah',
+                      image: 'lib/images/LAVACAKE.jpeg')),
+              ItemProduk(
+                  produk: Produk(
+                      namaProduk: 'Brownies',
+                      hargaProduk: 42000,
+                      deskripsiProduk: 'Kue coklat dengan taburan choco cips',
+                      image: 'lib/images/BROWNIES.jpg')),
+            ],
+          ),
+        ));
   }
-
-  Widget buildSearch() => SearchWidget(
-
-      );
 }
 
 class ItemProduk extends StatelessWidget {

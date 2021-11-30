@@ -1,6 +1,6 @@
 class ApiUrl {
   static const String baseUrl =
-      'https://def5-36-90-8-142.ngrok.io/toko-api/public';
+      'https://1bce-36-90-8-142.ngrok.io/toko-api/public';
 
   static const String registrasi = baseUrl + '/registrasi';
   static const String login = baseUrl + '/login';

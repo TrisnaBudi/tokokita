@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tokokita/bloc/logout_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/login_page.dart';
@@ -13,6 +14,11 @@ class ProdukPage extends StatefulWidget {
 
 class _ProdukPageState extends State<ProdukPage> {
   DateTime timeBackPressed = DateTime.now();
+  final List<String> imagelist = [
+    'lib/images/BLACKFOREST.jpg',
+    'lib/images/LAVACAKE.jpeg',
+    'lib/images/BROWNIES.jpg'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +63,26 @@ class _ProdukPageState extends State<ProdukPage> {
           ),
           body: ListView(
             children: [
+              Text('Selamat Datang!\n',
+                  style:
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+              CarouselSlider(
+                options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  autoPlay: true,
+                ),
+                items: [Image.asset('lib/images/BLACKFOREST.jpg'),
+                Image.asset('lib/images/LAVACAKE.jpeg'),
+                Image.asset('lib/images/BROWNIES.jpg')]
+                    .map((e) => ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Stack(
+                            fit: StackFit.expand,
+                          ),
+                        ))
+                    .toList(),
+              ),
               ItemProduk(
                   produk: Produk(
                       namaProduk: 'Black Forest',

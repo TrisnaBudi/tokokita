@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tokokita/model/produk.dart';
-import 'package:tokokita/ui/produk_page.dart';
+import 'package:tokokita/widget/success_dialog.dart';
 
 class ProdukDetail extends StatefulWidget {
   Produk produk;
@@ -21,7 +21,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Detail Produk'),
+        title: Text('Detail Kue'),
       ),
       body: Center(
         child: Column(
@@ -35,8 +35,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
               "Rp. ${widget.produk.hargaProduk.toString()}",
               style: TextStyle(fontSize: 18.0),
             ),
-            Text(widget.produk.deskripsiProduk,
-                style: TextStyle(fontSize: 18.0)),
+            Text("${widget.produk.deskripsiProduk}\n"),
             TextFormField(
                 controller: _textJumlah,
                 decoration: InputDecoration(labelText: "Jumlah Beli"),
@@ -107,7 +106,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
 
     AlertDialog alertDialog = new AlertDialog(
       content: Text(
-          "Apa anda yakin ingin membeli kue ini?\n Nama: ${widget.produk.namaProduk}\n Total harga: ${total_harga}"),
+          "Apa anda yakin ingin membeli kue ini?\n Nama: ${widget.produk.namaProduk}\n Total harga: Rp. ${total_harga}"),
       actions: [
         //tombol hapus
         ElevatedButton(
@@ -132,21 +131,14 @@ class _ProdukDetailState extends State<ProdukDetail> {
   }
 
   void sukses() {
-    AlertDialog alertDialog = new AlertDialog(
-      content: Text("Terima Kasih!\n Kue pesanan anda akan segera dikirm"),
-      actions: [
-        ElevatedButton(
-          child: Text("OKE"),
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.green)),
-          onPressed: () async{
-            Navigator.push(
-          context, new MaterialPageRoute(builder: (context) => ProdukPage()));
-          },
-        )
-      ],
-    );
-
-    showDialog(context: context, builder: (_) => alertDialog);
+     showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => SuccessDialog(
+                description: "Pesanan akan segera dikirim",
+                okClick: () {
+                  Navigator.pop(context);
+                },
+              ));
   }
 }

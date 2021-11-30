@@ -72,9 +72,11 @@ class _ProdukPageState extends State<ProdukPage> {
                   enableInfiniteScroll: false,
                   autoPlay: true,
                 ),
-                items: [Image.asset('lib/images/BLACKFOREST.jpg'),
-                Image.asset('lib/images/LAVACAKE.jpeg'),
-                Image.asset('lib/images/BROWNIES.jpg')]
+                items: [
+                  Image.asset('lib/images/BLACKFOREST.jpg'),
+                  Image.asset('lib/images/LAVACAKE.jpeg'),
+                  Image.asset('lib/images/BROWNIES.jpg')
+                ]
                     .map((e) => ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Stack(

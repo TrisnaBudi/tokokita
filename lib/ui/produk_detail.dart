@@ -14,7 +14,7 @@ enum BestTutorSite { kecil, sedang, besar }
 class _ProdukDetailState extends State<ProdukDetail> {
   BestTutorSite _site = BestTutorSite.sedang;
   final _textJumlah = TextEditingController(text: '1');
-  int harga_ukuran;
+  int harga_ukuran = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -139,9 +139,9 @@ class _ProdukDetailState extends State<ProdukDetail> {
           child: Text("OKE"),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.green)),
-          onPressed: () {
-            Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => ProdukPage()));
+          onPressed: () async{
+            Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => ProdukPage()));
           },
         )
       ],

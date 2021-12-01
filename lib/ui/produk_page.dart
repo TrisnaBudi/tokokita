@@ -63,9 +63,10 @@ class _ProdukPageState extends State<ProdukPage> {
           ),
           body: ListView(
             children: [
-              Center(child: Text('Selamat Datang!',
-                  style:
-                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))),
+              Center(
+                  child: Text('Selamat Datang!',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold))),
               Center(child: Text('Kue Rekomendasi hari ini adalah...\n')),
               CarouselSlider(
                 options: CarouselOptions(
@@ -116,9 +117,10 @@ class _ProdukPageState extends State<ProdukPage> {
                         ))
                     .toList(),
               ),
-              Center(child: Text('\nDaftar Kue',
-                  style:
-                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))),
+              Center(
+                  child: Text('\nDaftar Kue',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold))),
               ItemProduk(
                   produk: Produk(
                       namaProduk: 'Black Forest',
@@ -137,7 +139,6 @@ class _ProdukPageState extends State<ProdukPage> {
                       hargaProduk: 42000,
                       deskripsiProduk: 'Kue coklat dengan taburan choco cips',
                       image: 'lib/images/BROWNIES.jpg')),
-              
             ],
           ),
         ));

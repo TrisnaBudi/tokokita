@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tokokita/bloc/logout_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/login_page.dart';
@@ -13,6 +14,11 @@ class ProdukPage extends StatefulWidget {
 
 class _ProdukPageState extends State<ProdukPage> {
   DateTime timeBackPressed = DateTime.now();
+  final List imagelist = [
+    ['lib/images/BLACKFOREST.jpg', 'Black Forest'],
+    ['lib/images/LAVACAKE.jpeg', 'Lava Cake'],
+    ['lib/images/BROWNIES.jpg', 'Brownies'],
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,7 @@ class _ProdukPageState extends State<ProdukPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Daftar Kue'),
+            title: Text('Toko Kue'),
           ),
           drawer: Drawer(
             child: ListView(
@@ -57,6 +63,64 @@ class _ProdukPageState extends State<ProdukPage> {
           ),
           body: ListView(
             children: [
+              Center(
+                  child: Text('Selamat Datang!',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold))),
+              Center(child: Text('Kue Rekomendasi hari ini adalah...\n')),
+              CarouselSlider(
+                options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  autoPlay: true,
+                ),
+                items: imagelist
+                    .map((e) => ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: <Widget>[
+                              Container(
+                                width: 116.0,
+                                height: 174.0,
+                                foregroundDecoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.transparent,
+                                      Colors.transparent,
+                                      Colors.transparent,
+                                      Colors.black
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: [0, 0.2, 0.8, 1],
+                                  ),
+                                ),
+                                child: Image.asset(
+                                  e[0],
+                                  width: 1050,
+                                  height: 350,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    e[1],
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ))
+                            ],
+                          ),
+                        ))
+                    .toList(),
+              ),
+              Center(
+                  child: Text('\nDaftar Kue',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold))),
               ItemProduk(
                   produk: Produk(
                       namaProduk: 'Black Forest',

@@ -9,10 +9,10 @@ class ProdukDetail extends StatefulWidget {
   _ProdukDetailState createState() => _ProdukDetailState();
 }
 
-enum BestTutorSite { kecil, sedang, besar }
+enum Ukuran { kecil, sedang, besar }
 
 class _ProdukDetailState extends State<ProdukDetail> {
-  BestTutorSite _site = BestTutorSite.sedang;
+  Ukuran _site = Ukuran.sedang;
   final _textJumlah = TextEditingController(text: '1');
   int harga_ukuran = 0;
 
@@ -43,9 +43,9 @@ class _ProdukDetailState extends State<ProdukDetail> {
             ListTile(
               title: const Text('Kecil'),
               leading: Radio(
-                value: BestTutorSite.kecil,
+                value:Ukuran.kecil,
                 groupValue: _site,
-                onChanged: (BestTutorSite value) {
+                onChanged: (Ukuran value) {
                   setState(() {
                     _site = value;
                     harga_ukuran = -5000;
@@ -56,9 +56,9 @@ class _ProdukDetailState extends State<ProdukDetail> {
             ListTile(
               title: const Text('Sedang'),
               leading: Radio(
-                value: BestTutorSite.sedang,
+                value: Ukuran.sedang,
                 groupValue: _site,
-                onChanged: (BestTutorSite value) {
+                onChanged: (Ukuran value) {
                   setState(() {
                     _site = value;
                     harga_ukuran = 0;
@@ -69,9 +69,9 @@ class _ProdukDetailState extends State<ProdukDetail> {
             ListTile(
               title: const Text('Besar'),
               leading: Radio(
-                value: BestTutorSite.besar,
+                value: Ukuran.besar,
                 groupValue: _site,
-                onChanged: (BestTutorSite value) {
+                onChanged: (Ukuran value) {
                   setState(() {
                     _site = value;
                     harga_ukuran = 5000;
